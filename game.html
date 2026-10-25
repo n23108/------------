@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="game.js" defer></script>
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #1e1e2f 0%, #111119 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; 
+            gap: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+          
+        }
+
+        @media (min-width: 768px) {
+            body {
+                flex-direction: row; 
+                gap: 50px;
+            }
+        }
+
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .n, .timer {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            /*font-family: 'Segoe UI',... - cursive is bad for numbers */
+        }
+
+        .timer {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            box-shadow: 0 0 20px rgba(255, 154, 158, 0.6);
+        }
+
+        .n:hover, .timer:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(79, 172, 254, 0.8);
+        }
+        .timer:hover {
+            box-shadow: 0 0 30px rgba(255, 154, 158, 0.8);
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr); 
+            gap: 5px; 
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.05); 
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 40vw;
+            height: 40vw;
+        }
+
+        .line {
+            display: contents; 
+        }
+
+        .sq {
+            background-color: #2a2a40;
+            border-radius: 8px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none; 
+            
+        }
+
+        .sq:hover {
+            background-color: #3b3b59;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .sq:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background-color: #1e1e2f;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="status"></div>
+    <div class="info-panel">
+        <div class="n" title="Current Goal">0</div>
+        <div class="timer" title="Time Left">10</div>
+    </div>
+    
+    <main>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+        <div class="line">
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+            <div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div><div class="sq"></div>
+        </div>
+    </main>
+</body>
+</html>
+<!-- Injection By NetFree -->
+<script >window._shareFileNormalReport = false</script>
+<script src="https://netfree.link/injection-script/report-share-file.js" type="text/javascript" async ></script>
+<script src="//netfree.link/injection-script/go-payment.js" type="text/javascript" async ></script>
+<script src="//netfree.link/injection-script/popup-card-init.js" type="text/javascript" async ></script>
